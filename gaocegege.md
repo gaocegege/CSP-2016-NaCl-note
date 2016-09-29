@@ -22,3 +22,29 @@ NaCl是完全跨平台的，一种是编译成各个平台的机器码，一种�
 但是很尴尬，场景太小了。现在来看大部分跟计算有关的工作都是由服务器去做的，到了浏览器这边本身就是一些偏展示性的工作。Native Client在页端游戏渲染，这样对前端计算负载比较大的任务里可能会有好的表现吧。我觉得还是场景太小，也可能是我人生阅历不够丰富。
 
 不过，Native Client的思想发展一下，跟Chrome OS有点搭，本身操作系统不支持安装任何原生应用，所有应用都在Chrome里面，如果想写原生应用，只有通过Native Client这样的曲线救国的方式来实现。
+
+在提高性能这块，除了Native Client，还有另一个流派，Asm.js
+
+![](http://static.oschina.net/uploads/img/201312/30100811_P7Hv.png)
+
+Asm.js 来自于 JavaScript 应用的一个新领域: 编译成JavaScript的C/C++应用。它是 JavaScript 应用的一个全新流派，由 Mozilla 的 Emscripten项目催生而来。Emscripten 将 C/C++ 代码传入  LLVM, 并将 LLVM 生成的字节码转换成 JavaScript (具体的, Asm.js, 是 JavaScript 的一个子集)。
+
+```cpp
+char xInt8 = 127;
+char yInt8 = xInt8 + 1; // 128
+char zInt8 = yInt8 / 2; // 63
+```
+
+```javascript
+var xInt8 = 127;
+var $add = (xInt8 + 1) | 0;
+var yInt8 = ($add << 24) >> 24;
+var $div = ((yInt8 | 0) / 2) & -1;
+var zInt8 = ($div << 24) >> 24; 
+```
+
+![](http://i2.wp.com/kripken.github.com/mloc_emscripten_talk/macro4b.png)
+
+firefox + asm.js 可以做到只比Native慢一倍
+
+Principle：问题可以从不同层次来进行解决
