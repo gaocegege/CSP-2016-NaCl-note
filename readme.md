@@ -8,6 +8,7 @@
 * [https://www.zhihu.com/question/23067497/answer/40878704](https://www.zhihu.com/question/23067497/answer/40878704)
 * [NaCl Module开发指南](https://developer.chrome.com/native-client)
 * [开发NaCl的文档](https://www.chromium.org/nativeclient)
+* [一篇相关博客](http://www.cnblogs.com/lm3515/archive/2010/12/23/1914798.html)
 
 ## 谷歌发表的与NaCl有关的论文
 
