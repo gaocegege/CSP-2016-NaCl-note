@@ -9,6 +9,7 @@
 * [NaCl Module开发指南](https://developer.chrome.com/native-client)
 * [开发NaCl的文档](https://www.chromium.org/nativeclient)
 * [一篇相关博客](http://www.cnblogs.com/lm3515/archive/2010/12/23/1914798.html)
+* [Outer Sand Box解释文章](http://book.51cto.com/art/201012/236330.htm)
 
 ## 谷歌发表的与NaCl有关的论文
 
