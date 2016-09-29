@@ -13,6 +13,10 @@
 
 [http://www.chromium.org/nativeclient/reference/research-papers](http://www.chromium.org/nativeclient/reference/research-papers)
 
+## 源码
+
+[https://chromium.googlesource.com/native_client/src/native_client.git](https://chromium.googlesource.com/native_client/src/native_client.git)
+
 ## 解释图
 
 ![](https://developer.chrome.com/native-client/images/web-app-with-nacl.png)
