@@ -4,6 +4,24 @@
 
 [./usage.md](./usage.md)
 
+## 分析
+
+### 内外两层沙箱各自的作用
+
+都是为了防御攻击，内层运用SFI和Memory Segment来进行保护，外层有点类似ptrace这样的技术。
+
+内层沙箱使用代码静态分析技术来在不可信的x86代码中检查安全隐患。以前这样的分析受到了很多技术的挑战，比如说可自我修改的代码，重叠指令。为了解决这样的问题，在Native Client中为代码制定了一系列契约和结构规则，从而确保本地代码模块能可靠地进行分解，然后通过代码验证器来确保可执行文件只包含合法指令集中的指令。
+
+这样做的好处是不需要信任编译器，只需要信任这个非常小的静态代码检查器。
+
+内层沙箱还利用了x86内存分段机制来限制数据和指令的内存引用。
+
+内层沙箱用于在一个本地进程中创建一个安全的子域。在这个子域中我们可以将一个可信的运行时服务(Service Runtime)子系统和不可信模块放置在同一个进程中。通过一个安全的跳跃/计分板机制来允许可信代码和不可信代码之间的控制转移。
+
+内层沙箱不仅将系统与本地模块进行分离，而且还使得本地模块与操作系统进行了分离。
+
+外层沙箱是第二道防御机制。它会对运行NaCl模块的进程的所有系统调用，通过与一个允许的系统调用白名单进行比对来拒绝或通过此调用。目前白名单上允许的系统调用有46个。
+
 ## PNaCl与NaCl的区别
 
 * The left side of the diagram shows Portable Native Client (PNaCl, pronounced “pinnacle”). An LLVM based toolchain produces a single, portable (pexe) module. At runtime an ahead-of-time (AOT) translator, built into the browser, translates the pexe into native code for the relevant client architecture.
