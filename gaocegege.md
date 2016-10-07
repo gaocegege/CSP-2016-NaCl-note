@@ -22,6 +22,14 @@
 
 外层沙箱是第二道防御机制。它会对运行NaCl模块的进程的所有系统调用，通过与一个允许的系统调用白名单进行比对来拒绝或通过此调用。目前白名单上允许的系统调用有46个。
 
+### 内层沙箱
+
+谷歌使用分段内存来解决X86-32上的问题，而另一篇论文: [Sehr, David, et al. "Adapting Software Fault Isolation to Contemporary CPU Architectures." USENIX Security Symposium. 2010.]()讲了ARM和X86-64上的做法，有兴趣可以去看。
+
+[Software fault isolation](https://www.cs.umd.edu/class/spring2011/cmsc838g/lectures/Feb.22.SFI.pdf)是一个很古老的概念，就是大概可以理解为程序的code和data是它的fault domain，任何fault都要限制在它自己的fault domain中。两种做法，segment matching和address sandboxing，第一种可以发现错误，第二种只能保证正确但是性能好。
+
+NaCl是第二种，但是做了优化，就是通过zero based text把第二步的or操作优化没了。。
+
 ## PNaCl与NaCl的区别
 
 * The left side of the diagram shows Portable Native Client (PNaCl, pronounced “pinnacle”). An LLVM based toolchain produces a single, portable (pexe) module. At runtime an ahead-of-time (AOT) translator, built into the browser, translates the pexe into native code for the relevant client architecture.
