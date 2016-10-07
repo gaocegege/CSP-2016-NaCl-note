@@ -30,6 +30,12 @@
 
 NaCl是第二种，但是做了优化，就是通过zero based text把第二步的or操作优化没了。。
 
+![](./resources/memory.png)
+
+内存布局如图，所有的东西会被装进Service Runtime。但是会有一点需要注意，那就是里面会有一个60KB大小的可信代码，用来放trampoline call和springboard return gate。下面就是代码段，其中CS寄存器是从0开始的，为了方式修改寄存器的值，所有会影响段寄存器的值在内存沙箱的代码中都是会被validate的。
+
+在由不可信代码到可信代码的控制流切换时，会用到trampoline call。然后会通过Far Call来把CS等段寄存器都压到栈上，然后切换成Flat Memory Model的形式，来运行可信代码。
+
 ## PNaCl与NaCl的区别
 
 * The left side of the diagram shows Portable Native Client (PNaCl, pronounced “pinnacle”). An LLVM based toolchain produces a single, portable (pexe) module. At runtime an ahead-of-time (AOT) translator, built into the browser, translates the pexe into native code for the relevant client architecture.
