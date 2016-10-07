@@ -45,6 +45,16 @@ NaCl是第二种，但是做了优化，就是通过zero based text把第二步�
 
 在由不可信代码到可信代码的控制流切换时，会用到trampoline call。然后会通过Far Call来把CS等段寄存器都压到栈上，然后切换成Flat Memory Model的形式，来运行可信代码。
 
+```
+• Very hard to prove that x86 code is safe
+• Proving a small subset of x86 code is easy
+	o Minimize the trusted computing base
+	o Must be able to map all of x86 code into this subset
+	o How do we find this small subset?
+• Statically verify rewritten code before execution
+	o If it is not obviously safe, reject the code
+```
+
 ## Comments
 
 从研究角度来讲，感觉本文最大的贡献是提出了还有用分段内存来使得SFI更加简单了。
