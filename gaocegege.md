@@ -4,6 +4,15 @@
 
 [./usage.md](./usage.md)
 
+## PNaCl与NaCl的区别
+
+* The left side of the diagram shows Portable Native Client (PNaCl, pronounced “pinnacle”). An LLVM based toolchain produces a single, portable (pexe) module. At runtime an ahead-of-time (AOT) translator, built into the browser, translates the pexe into native code for the relevant client architecture.
+* The right side of the diagram shows (non-portable) Native Client. A GCC based toolchain produces multiple architecture-dependent (nexe) modules, which are packaged into an application. At runtime the browser determines which nexe to load based on the architecture of the client machine.
+
+NaCl是完全跨平台的，一种是编译成各个平台的机器码，一种是利用LLVM类似的中间代码，在运行时去解释中间代码。前者是NaCl，后者被称作PNaCl，但做的事情是一样的，都是为了在浏览器里运行Native代码
+
+![](https://developer.chrome.com/native-client/images/nacl-pnacl-component-diagram.png)
+
 ## 分析
 
 ### 内外两层沙箱各自的作用
@@ -36,16 +45,9 @@ NaCl是第二种，但是做了优化，就是通过zero based text把第二步�
 
 在由不可信代码到可信代码的控制流切换时，会用到trampoline call。然后会通过Far Call来把CS等段寄存器都压到栈上，然后切换成Flat Memory Model的形式，来运行可信代码。
 
-## PNaCl与NaCl的区别
-
-* The left side of the diagram shows Portable Native Client (PNaCl, pronounced “pinnacle”). An LLVM based toolchain produces a single, portable (pexe) module. At runtime an ahead-of-time (AOT) translator, built into the browser, translates the pexe into native code for the relevant client architecture.
-* The right side of the diagram shows (non-portable) Native Client. A GCC based toolchain produces multiple architecture-dependent (nexe) modules, which are packaged into an application. At runtime the browser determines which nexe to load based on the architecture of the client machine.
-
-NaCl是完全跨平台的，一种是编译成各个平台的机器码，一种是利用LLVM类似的中间代码，在运行时去解释中间代码。前者是NaCl，后者被称作PNaCl，但做的事情是一样的，都是为了在浏览器里运行Native代码
-
-![](https://developer.chrome.com/native-client/images/nacl-pnacl-component-diagram.png)
-
 ## Comments
+
+从研究角度来讲，感觉本文最大的贡献是提出了还有用分段内存来使得SFI更加简单了。
 
 这篇论文已经有些年头了，是09年发表的。从09年到现在2016年，技术和趋势都有了很大的发展。可能从当时看，Native Client这种在浏览器里安全地运行Native代码的技术有些前景，毕竟是谷歌发的论文。但是从现在来看，它并不是发展的趋势。目前Javascript已经可以说是统一整个前端了，现在的潮流是所有东西都用js来实现，随着硬件的发展，还有js开发者数量的不停增长下，甚至是Native app都已经逐渐由js来进行开发，比如electron，React Native这样的技术。这样的方式能够降低人力成本，以前需要招PC开发，iOS开发，现在只需要统一招世界第一语言的开发。
 
