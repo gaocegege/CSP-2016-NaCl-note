@@ -6,7 +6,7 @@
 
 ### js
 
-```
+```javascript
 function moduleDidLoad() {
   CounterModule = document.getElementById( 'counter' );
   var inc = document.getElementById( 'inc' );
@@ -20,7 +20,7 @@ function handleMessage(message_event) {
 
 ### cpp
 
-```
+```cpp
 void CounterInstance::HandleMessage( const pp::Var& var_message ) {
   if ( !var_message.is_number() )
     return; //Early exit
