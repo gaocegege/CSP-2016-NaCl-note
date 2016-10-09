@@ -10,6 +10,7 @@
 * [开发NaCl的文档](https://www.chromium.org/nativeclient)
 * [一篇相关博客](http://www.cnblogs.com/lm3515/archive/2010/12/23/1914798.html)
 * [Outer Sand Box解释文章](http://book.51cto.com/art/201012/236330.htm)
+* [BH_US_12_Rohlf_Google_Native_Client_Slides](https://media.blackhat.com/bh-us-12/Briefings/Rohlf/BH_US_12_Rohlf_Google_Native_Client_Slides.pdf)
 
 ## 谷歌发表的与NaCl有关的论文
 
