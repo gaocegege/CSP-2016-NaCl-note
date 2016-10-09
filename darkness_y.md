@@ -11,10 +11,10 @@
     * 通过一个`Service Runtime`，用trampoline和springboard传递指令
     * 认为OS本身可能有缺陷，所以同时防护native module & OS （双向validation）
     * 4个需要解决的子问题：
-	* `dataintegrity`：segmented memory
-	* `reliable disassembly`：C1 + C6
-	* `no unsafe instructions`：TCB
-	* `CFI`: direct branch -> 静态分析；indirect branch -> _nacljmp_
+        * `dataintegrity`：segmented memory
+        * `reliable disassembly`：C1 + C6
+        * `no unsafe instructions`：TCB
+        * `CFI`: direct branch -> 静态分析；indirect branch -> _nacljmp_
 * ###Outer Sandbox
     * 基于[ptrace](http://blog.csdn.net/edonlii/article/details/8717029)实现对系统调用的跟踪，从而限制side effect，会产生一定的overhead，但是可以接受。
     * `limitations`在于存在一些alternative sys call（lcall7 and lcall27）
