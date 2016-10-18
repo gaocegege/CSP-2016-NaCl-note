@@ -16,6 +16,10 @@
 
 [http://www.chromium.org/nativeclient/reference/research-papers](http://www.chromium.org/nativeclient/reference/research-papers)
 
+## Slides
+
+[./slides/Native-Client.pdf](./slides/Native-Client.pdf)
+
 ## 源码
 
 [https://chromium.googlesource.com/native_client/src/native_client.git](https://chromium.googlesource.com/native_client/src/native_client.git)
@@ -27,3 +31,7 @@
 ## gaocegege的笔记
 
 [gaocegege-note](./gaocegege.md)
+
+## darkness_y的笔记
+
+[darkness_y](./darkness_y.md)
